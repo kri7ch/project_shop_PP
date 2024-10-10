@@ -1,0 +1,149 @@
+﻿<Page x:Class="project_shop.Regist"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:project_shop"
+      mc:Ignorable="d" 
+      d:DesignHeight="827" d:DesignWidth="1453"
+      Title="Regist" Width="1453" Height="827">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Width="1453" Height="827" VerticalAlignment="Center" Fill="#FF35395B" RadiusX="40" RadiusY="40">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="50" Opacity="15" Direction="360"></DropShadowEffect>
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <Rectangle HorizontalAlignment="Left" Width="460" Height="112" Margin="85,248,0,0" VerticalAlignment="Top" Fill="#FF626586" RadiusX="7" RadiusY="7">
+            <Rectangle.ToolTip>
+                <ToolTip>
+                    Введите адрес электронной почты. Пример rakhmaevdanil@gmail.ru
+                </ToolTip>
+            </Rectangle.ToolTip>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Width="461" Height="112" Margin="85,376,0,0" VerticalAlignment="Top" Fill="#FF626586" RadiusX="7" RadiusY="7">
+            <Rectangle.ToolTip>
+                <ToolTip>
+                    Минимум одна заглавная буква, одна маленькая буква, одну цифру и быть не менее 6 символов.
+                </ToolTip>
+            </Rectangle.ToolTip>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Width="462" Height="112" Margin="87,506,0,0" VerticalAlignment="Top" Fill="#FF626586" RadiusX="7" RadiusY="7">
+            <Rectangle.ToolTip>
+                <ToolTip>
+                    Повторите пароль.
+                </ToolTip>
+            </Rectangle.ToolTip>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Width="460" Height="112" Margin="586,248,0,0" VerticalAlignment="Top" Fill="#FF626586" RadiusX="7" RadiusY="7">
+            <Rectangle.ToolTip>
+                <ToolTip>
+                    Ввод начинать вводить с большой буквы!
+                </ToolTip>
+            </Rectangle.ToolTip>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Width="460" Height="112" Margin="586,374,0,0" VerticalAlignment="Top" Fill="#FF626586" RadiusX="7" RadiusY="7">
+            <Rectangle.ToolTip>
+                <ToolTip>
+                    Ввод начинать вводить с большой буквы!
+                </ToolTip>
+            </Rectangle.ToolTip>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Width="460" Height="112" Margin="586,506,0,0" VerticalAlignment="Top" Fill="#FF626586" RadiusX="7" RadiusY="7">
+            <Rectangle.ToolTip>
+                <ToolTip>
+                    Ввод начинать вводить с большой буквы!
+                </ToolTip>
+            </Rectangle.ToolTip>
+        </Rectangle>
+
+        <Image Margin="-89,-200,788,357" Source="/qweqweqe.png" Stretch="Fill"/>
+        <Image x:Name="Image_Email" Margin="-105,-58,1174,161" Source="/eeeee.png" Stretch="Fill" Visibility="Hidden"/>
+        <Image x:Name="Image_Password" Margin="-105,74,1174,37" Source="/eeeee.png" Stretch="Fill" Visibility="Hidden"/>
+        <Image x:Name="Image_Password_2" Margin="-105,199,1174,-97" Source="/eeeee.png" Stretch="Fill" Visibility="Hidden"/>
+        <Image x:Name="Image_Password_3" Margin="396,-59,673,161" Source="/eeeee.png" Stretch="Fill" Visibility="Hidden"/>
+        <Image x:Name="Image_Password_4" Margin="396,65,673,37" Source="/eeeee.png" Stretch="Fill" Visibility="Hidden"/>
+        <Image x:Name="Image_Password_5" Margin="396,199,673,-97" Source="/eeeee.png" Stretch="Fill" Visibility="Hidden"/>
+
+        
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="24" Margin="107,0,0,698" Height="36" Width="78"><Hyperlink Click="Hyperlink_Click" TextDecorations="None" Foreground="#777BA3"><Run Text="Войти"/></Hyperlink></TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="24" Margin="220,0,0,700"><Hyperlink TextDecorations="None" Foreground="White"><Run Text="Регистрация"/></Hyperlink></TextBlock>
+        <Label Content="Регистрация" HorizontalAlignment="Left" Margin="81,162,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" FontWeight="Medium"/>
+        <Label Content="Почта" HorizontalAlignment="Left" Margin="108,258,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" FontSize="14"/>
+        <TextBox Style="{StaticResource tb_style}" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown" PreviewTextInput="textbox_email_PreviewTextInput" x:Name="textbox_email" MaxLength="30" HorizontalAlignment="Left" Margin="112,292,0,0" Padding="2, 12, 0, 0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" FontSize="15" Height="46" GotFocus="textbox_password_GotFocus" LostFocus="textbox_password_LostFocus" SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Введите адрес электронной почты. Пример rakhmaevdanil@gmail.ru
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="110,390,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" FontSize="14"/>
+        <PasswordBox x:Name="textbox_password" MaxLength="30" HorizontalAlignment="Left" Margin="114,424,0,0" VerticalAlignment="Top" Width="379" Height="46" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus" BorderBrush="{x:Null}" Background="Transparent" FontSize="15" Padding="2,10,0,0" Foreground="White" SelectionBrush="#FF35395B" BorderThickness="0" PreviewKeyDown="textbox_password_PreviewKeyDown">
+            <PasswordBox.ToolTip>
+                <ToolTip>
+                    Минимум одна заглавная буква, одна маленькая буква, одну цифру и быть не менее 6 символов.
+                </ToolTip>
+            </PasswordBox.ToolTip>
+        </PasswordBox>
+        <Button Style="{StaticResource btn_style}"  Content="Зарегистрироваться" x:Name="btn_enter" HorizontalAlignment="Left" Margin="90,692,0,0" VerticalAlignment="Top" Height="74" Width="350" BorderBrush="{x:Null}" Background="#FFFFE033" FontSize="22" FontWeight="Medium" Click="btn_enter_Click">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="Yellow" Opacity="0.6" BlurRadius="20"/>
+            </Button.Effect>
+        </Button>
+
+
+        <Label Content="Повторите пароль" HorizontalAlignment="Left" Margin="113,520,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" FontSize="14"/>
+        <PasswordBox x:Name="textbox_password_2" MaxLength="30" HorizontalAlignment="Left" Margin="117,554,0,0" VerticalAlignment="Top" Width="376" Height="46" GotFocus="PasswordBox2_GotFocus" LostFocus="PasswordBox2_LostFocus" BorderBrush="{x:Null}" Background="Transparent" FontSize="15" Padding="2,10,0,0" Foreground="White" SelectionBrush="#FF35395B" BorderThickness="0" PreviewKeyDown="textbox_password_PreviewKeyDown">
+            <PasswordBox.ToolTip>
+                <ToolTip>
+                    Повторите пароль.
+                </ToolTip>
+            </PasswordBox.ToolTip>
+        </PasswordBox>
+
+        <Label Content="Отчество" HorizontalAlignment="Left" Margin="609,516,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" FontSize="14"/>
+        <TextBox Style="{StaticResource tb_style}" MaxLength="30" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown" PreviewTextInput="textbox_Correct_input_PreviewTextInput" x:Name="textbox_middle_name" HorizontalAlignment="Left" Margin="613,550,0,0" Padding="2, 12, 0, 0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" FontSize="15" Height="46" GotFocus="textbox_otch_GotFocus" LostFocus="textbox_otch_LostFocus" SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Ввод начинаем вводить с большой буквы!
+            Если нет отчества, оставить пустым
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="609,384,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" FontSize="14"/>
+        <TextBox Style="{StaticResource tb_style}" MaxLength="30" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown" PreviewTextInput="textbox_Correct_input_PreviewTextInput" x:Name="textbox_name" HorizontalAlignment="Left" Margin="613,422,0,0" Padding="2, 12, 0, 0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" FontSize="15" Height="46" GotFocus="textbox_name_GotFocus" LostFocus="textbox_name_LostFocus" SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Ввод начинать вводить с большой буквы!
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="609,258,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" FontSize="14"/>
+        <TextBox Style="{StaticResource tb_style}"  CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown" PreviewTextInput="textbox_Correct_input_PreviewTextInput" x:Name="textbox_surname" HorizontalAlignment="Left" Margin="613,292,0,0" Padding="2, 12, 0, 0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" FontSize="15" Height="46" GotFocus="textbox_surname_GotFocus" LostFocus="textbox_surname_LostFocus" SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Ввод начинать вводить с большой буквы!
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox x:Name="checkbox_password" Content="Показать пароль" HorizontalAlignment="Left" Margin="423,470,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" Checked="checkbox_password_Checked" Unchecked="checkbox_password_Unchecked"/>
+        <CheckBox x:Name="checkbox_password_2" Content="Показать пароль" HorizontalAlignment="Left" Margin="423,600,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" Checked="checkbox_password_Checked_2" Unchecked="checkbox_password_Unchecked_2"/>
+        <TextBox Style="{StaticResource tb_style}" GotFocus="textbox_show_password_GotFocus" LostFocus="textbox_show_password_LostFocus"  Padding="0,7,3,3" HorizontalAlignment="Left" MaxLength="25" x:Name="textbox_show_password" BorderThickness="2,2,2,2" Height="46" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="362" FontSize="15" Margin="114,424,0,0" PreviewKeyDown="textBox_PreviewKeyDown" SelectionBrush="#FF35395B" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Минимум одна заглавная буква, одна маленькая буква, одну цифру и быть не менее 6 символов.
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBox Style="{StaticResource tb_style}" GotFocus="textbox_show_password_2_GotFocus" LostFocus="textbox_show_password_2_LostFocus"  Padding="0,7,3,3" HorizontalAlignment="Left" MaxLength="25" x:Name="textbox_show_password_2" BorderThickness="2,2,2,2" Height="46" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="379" FontSize="15" Margin="117,554,0,0" PreviewKeyDown="textBox_PreviewKeyDown" SelectionBrush="#FF35395B" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Минимум одна заглавная буква, одна маленькая буква, одну цифру и быть не менее 6 символов.
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+    </Grid>
+</Page>

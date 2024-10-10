@@ -1,0 +1,26 @@
+﻿<Page x:Class="project_shop.Main_Shop_Window"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:project_shop"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1550"
+      Title="Main_Shop_Window" Height="900" Width="1550">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Width="1550" Height="900" VerticalAlignment="Center" Fill="#FF35395B" RadiusX="40" RadiusY="40">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="50" Opacity="15" Direction="360"></DropShadowEffect>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Label Content="Главное меню" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top" Foreground="White" FontSize="54" FontWeight="Medium"/>
+        <ListView x:Name="lv_product" Margin="90,180,843,40" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <local:Product_card/>
+            <local:Product_card/>
+            <local:Product_card/>
+            <local:Product_card/>
+            <local:Product_card/>
+        </ListView>
+
+    </Grid>
+</Page>
