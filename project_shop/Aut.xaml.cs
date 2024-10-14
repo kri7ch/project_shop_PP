@@ -76,7 +76,8 @@ namespace project_shop
             if (user != null)
             {
                 MessageBox.Show("Вы успешно вошли в аккаунт!", "Успешный вход", MessageBoxButton.OK, MessageBoxImage.Information);
-                Shop_window shop_Window = new Shop_window();
+                broadcast(user.Id);
+                Shop_window shop_Window = new Shop_window(user.Id);
                 shop_Window.Show();
                 Window.GetWindow(this)?.Close();
             }
@@ -86,57 +87,49 @@ namespace project_shop
             }
             
         }
-        public void Remove_password_box()
+        public void broadcast(int id)
         {
-            textbox_show_password.Visibility = Visibility.Visible;
-            textbox_password.Visibility = Visibility.Hidden;
-        }
-        public void Restore_password_box()
-        {
-            textbox_password.Visibility = Visibility.Visible;
-            textbox_show_password.Visibility = Visibility.Hidden;
-        }
-
-        public void Checked_Pass()
-        {
-            if (checkbox_password.IsChecked == true)
-            {
-                textbox_show_password.Text = textbox_password.Password;
-                Remove_password_box();
-                textbox_show_password.Focus();
-                textbox_show_password.Select(textbox_show_password.Text.Length, 0);
-                if (checkbox_password.IsChecked == false)
-                {
-                    textbox_password.Password = textbox_show_password.Text;
-                    Restore_password_box();
-                    textbox_password.Focus();
-                }
-            }
-        }
-        public void Unchecked_Pass()
-        {
-            if (checkbox_password.IsChecked == false)
-            {
-                textbox_password.Password = textbox_show_password.Text;
-                Restore_password_box();
-                textbox_password.Focus();
-                if (checkbox_password.IsChecked == true)
-                {
-                    textbox_show_password.Text = textbox_password.Password;
-                    Remove_password_box();
-                    textbox_show_password.Focus();
-                    textbox_show_password.Select(textbox_show_password.Text.Length, 0);
-                }
-            }
+            Profile_Page profilePage = new Profile_Page(id);
+            Main_Shop_Window main_Shop_Window = new Main_Shop_Window(id);
+            Basket_Page basket_Page = new Basket_Page(id);
         }
         private void checkbox_password_Checked(object sender, RoutedEventArgs e)
         {
-            Checked_Pass();
+            TogglePasswordVisibility(textbox_password, textbox_show_password, checkbox_password.IsChecked == true);
         }
 
         private void checkbox_password_Unchecked(object sender, RoutedEventArgs e)
         {
-            Unchecked_Pass();
+            TogglePasswordVisibility(textbox_password, textbox_show_password, false);
+        }
+
+        private void TogglePasswordVisibility(PasswordBox passwordBox, TextBox showPasswordBox, bool isChecked)
+        {
+            if (isChecked)
+            {
+                showPasswordBox.Text = passwordBox.Password;
+                passwordBox.Visibility = Visibility.Hidden;
+                RemovePasswordBox(showPasswordBox);
+            }
+            else
+            {
+                passwordBox.Password = showPasswordBox.Text;
+                showPasswordBox.Visibility = Visibility.Hidden;
+                RestorePasswordBox(passwordBox);
+            }
+        }
+
+        private void RemovePasswordBox(TextBox showPasswordBox)
+        {
+            showPasswordBox.Visibility = Visibility.Visible;
+            showPasswordBox.Focus();
+            showPasswordBox.Select(showPasswordBox.Text.Length, 0);
+        }
+
+        private void RestorePasswordBox(PasswordBox passwordBox)
+        {
+            passwordBox.Visibility = Visibility.Visible;
+            passwordBox.Focus();
         }
 
         private void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -150,33 +143,58 @@ namespace project_shop
         {
             Checking_the_data();
         }
-        private void textbox_password_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            Image_Email.Visibility = Visibility.Visible;
+            if (sender is TextBox textBox)
+            {
+                ShowImageForTextBox(textBox.Name, Visibility.Visible);
+            }
+            else if (sender is PasswordBox passwordBox)
+            {
+                ShowImageForTextBox(passwordBox.Name, Visibility.Visible);
+            }
         }
 
-        private void textbox_password_LostFocus(object sender, RoutedEventArgs e)
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            Image_Email.Visibility = Visibility.Hidden;
+            if (sender is TextBox textBox)
+            {
+                ShowImageForTextBox(textBox.Name, Visibility.Hidden);
+            }
+            else if (sender is PasswordBox passwordBox)
+            {
+                ShowImageForTextBox(passwordBox.Name, Visibility.Hidden);
+            }
         }
 
-        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        private void ShowImageForTextBox(string textBoxName, Visibility visibility)
         {
-            Image_Password.Visibility = Visibility.Visible;
+            switch (textBoxName)
+            {
+                case "textbox_email":
+                    Image_Email.Visibility = visibility;
+                    break;
+                case "textbox_password":
+                    Image_Password.Visibility = visibility;
+                    break;
+                case "textbox_show_password":
+                    Image_Password.Visibility = visibility;
+                    break;
+            }
         }
 
-        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        public void Guest_Page()
         {
-            Image_Password.Visibility = Visibility.Hidden;
-        }
-        private void textbox_show_password_GotFocus(object sender, RoutedEventArgs e)
-        {
-            Image_Password.Visibility = Visibility.Visible;
+            var window = Window.GetWindow(this);
+            window.Title = "Регистрация";
+            NavigationService.Navigate(new MainGuestPage());
         }
 
-        private void textbox_show_password_LostFocus(object sender, RoutedEventArgs e)
+        private void Hyperlink_Click_Guest(object sender, RoutedEventArgs e)
         {
-            Image_Password.Visibility = Visibility.Hidden;
+            Guest_Page();
         }
+
+
     }
 }

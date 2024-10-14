@@ -8,12 +8,21 @@ namespace project_shop
 {
     public class User
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Middle_Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string BirthDay { get; set; }
+
+        public User(string surname, string name, string middleName, string email, string password)
+        {
+            Surname = surname;
+            Name = name;
+            Middle_Name = middleName;
+            Email = email;
+            Password = password;
+        }
     }
+
 }

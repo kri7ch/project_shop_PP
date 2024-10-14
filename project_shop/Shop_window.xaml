@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_shop"
         mc:Ignorable="d"
-        Title="Главное меню" Height="1080" Width="1920" MinHeight="1080" MinWidth="1920" Foreground="#FF111033" Background="#FF111033" WindowState="Maximized">
+        Title="Главное меню" Height="1080" Width="1920" MinHeight="1080" MinWidth="1920" Foreground="#FF111033" Background="#FF111033" WindowState="Maximized" Closing="Window_Closing">
     <Frame x:Name="Frame_Shop" NavigationUIVisibility="Hidden">
         
     </Frame>

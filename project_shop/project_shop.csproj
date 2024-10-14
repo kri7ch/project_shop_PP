@@ -58,6 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Basket_Page.xaml.cs">
+      <DependentUpon>Basket_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainGuestPage.xaml.cs">
+      <DependentUpon>MainGuestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main_Shop_Window.xaml.cs">
       <DependentUpon>Main_Shop_Window.xaml</DependentUpon>
     </Compile>
@@ -65,7 +71,9 @@
     <Compile Include="Product_card.xaml.cs">
       <DependentUpon>Product_card.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Product_class.cs" />
+    <Compile Include="Profile_Page.xaml.cs">
+      <DependentUpon>Profile_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Regist.xaml.cs">
       <DependentUpon>Regist.xaml</DependentUpon>
     </Compile>
@@ -77,7 +85,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Basket_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainGuestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Product_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Profile_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

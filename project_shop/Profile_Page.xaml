@@ -1,0 +1,62 @@
+﻿<Page x:Class="project_shop.Profile_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:project_shop"
+      mc:Ignorable="d"
+      d:DesignHeight="900" d:DesignWidth="1550"
+      Title="Профиль" Height="900" Width="1550">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Width="1550" Height="900" VerticalAlignment="Center" Fill="#FF35395B" RadiusX="40" RadiusY="40">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="50" Opacity="15" Direction="360"></DropShadowEffect>
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <Label Content="Профиль" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top" Foreground="White" FontSize="54" FontWeight="Medium"/>
+
+        <Border CornerRadius="30" Background="#FF545875" Margin="90,175,330,75">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" Opacity="15" Direction="360"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Label Content="Почта" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="32" FontWeight="Medium" Margin="60,40,0,0"/>
+                <Label x:Name="text_email" Content="Почта" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF8285A9" FontSize="26" FontWeight="Medium" Margin="60,10,0,0"/>
+
+                <Label Content="Фамилия" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="32" FontWeight="Medium" Margin="60,20,0,0"/>
+                <Label x:Name="text_surname" Content="Фамилия" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF8285A9" FontSize="26" FontWeight="Medium" Margin="60,10,0,0"/>
+
+                <Label Content="Имя" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="32" FontWeight="Medium" Margin="60,20,0,0"/>
+                <Label x:Name="text_name" Content="Имя" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF8285A9" FontSize="26" FontWeight="Medium" Margin="60,10,0,0"/>
+
+                <Label Content="Отчество" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="32" FontWeight="Medium" Margin="60,20,0,0"/>
+                <Label x:Name="text_lastname" Content="Отчество" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF8285A9" FontSize="26" FontWeight="Medium" Margin="60,10,0,0"/>
+                <Button Style="{StaticResource style_for_btn_buy}" Content="Редактировать" 
+                    x:Name="btn_enter" HorizontalAlignment="Center" 
+                    Margin="800, 40, 0, 0" Height="55" Width="220" 
+                    BorderBrush="White" FontSize="24" FontWeight="Medium" 
+                     Background="#FF545875" Foreground="White" 
+                    Cursor="Hand">
+                </Button>
+                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="32" Margin="60,-120,0,0">
+                    <Hyperlink Click="Hyperlink_Click_Aut" TextDecorations="None" Foreground="Red" FontWeight="Bold">
+                        <Run Text="Выйти из аккаунта"/>
+                    </Hyperlink>    
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" Margin="1270,0,0,775">
+            <Hyperlink Click="Hyperlink_Click_MainMenu" TextDecorations="None" Foreground="White">
+                <Run Text="Главное меню"/>
+            </Hyperlink>
+        </TextBlock>
+        
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" Margin="1347,0,0,75">
+            <Hyperlink TextDecorations="None" Click="Hyperlink_Click_Basket" Foreground="White">
+                <Run Text="Корзина"/>
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</Page>
