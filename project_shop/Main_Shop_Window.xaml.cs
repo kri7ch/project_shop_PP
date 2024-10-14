@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace project_shop
 {
@@ -20,14 +22,14 @@ namespace project_shop
     /// </summary>
     public partial class Main_Shop_Window : Page
     {
-        List<Product_class> list = new List<Product_class> { };
+        string path = "C:\\Users\\rakhm\\OneDrive\\Рабочий стол\\Учет товаров\\Учет товаров.txt";
+        public List<Products> all_product_json;
         public Main_Shop_Window()
         {
             InitializeComponent();
-            Product_class item1 = new Product_class("Футболка Gucci", "Белая футболка из хлопка", "22 шт", "1999 руб");
-
-            list = new List<Product_class> { item1 };
-            lv_product.ItemsSource = list;
+            string json = File.ReadAllText(path);
+            List<Products> all_product_json = JsonConvert.DeserializeObject<List<Products>>(json);
+            list_view_products.ItemsSource = all_product_json;
         }
 
     }

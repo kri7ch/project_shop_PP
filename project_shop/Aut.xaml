@@ -36,5 +36,7 @@
         </Button>
         <CheckBox x:Name="checkbox_password" Content="Показать пароль" HorizontalAlignment="Left" Margin="422,545,0,0" VerticalAlignment="Top" Foreground="#FF7F82A0" Checked="checkbox_password_Checked" Unchecked="checkbox_password_Unchecked"/>
         <TextBox Style="{StaticResource tb_style}"  GotFocus="textbox_show_password_GotFocus" LostFocus="textbox_show_password_LostFocus"  Padding="0,7,3,3" HorizontalAlignment="Left" MaxLength="25" x:Name="textbox_show_password" BorderThickness="2,2,2,2" Height="46" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" FontSize="15" Margin="119,499,0,0" PreviewKeyDown="textBox_PreviewKeyDown" SelectionBrush="#FF35395B" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden"/>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="22" Margin="99,0,0,87"><Hyperlink TextDecorations="None" Foreground="#FF7F82A0"><Run Text="Войти как гость"/></Hyperlink></TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="14" Margin="453,0,0,238"><Hyperlink TextDecorations="None" Foreground="#FF7F82A0"><Run Text="Забыли пароль"/></Hyperlink></TextBlock>
     </Grid>
 </Page>

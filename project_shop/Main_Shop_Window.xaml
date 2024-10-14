@@ -14,13 +14,46 @@
             </Rectangle.Effect>
         </Rectangle>
         <Label Content="Главное меню" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top" Foreground="White" FontSize="54" FontWeight="Medium"/>
-        <ListView x:Name="lv_product" Margin="90,180,843,40" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}">
-            <local:Product_card/>
-            <local:Product_card/>
-            <local:Product_card/>
-            <local:Product_card/>
-            <local:Product_card/>
+        <ListView Margin="90,185,285,59" x:Name="list_view_products" SelectedIndex="{Binding SelectedIndex}" 
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+          HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="10" Background="#FF545875" Margin="10">
+                        <Grid Margin="20">
+                            <StackPanel>
+                                <TextBlock FontSize="20" Margin="0 15 0 20" HorizontalAlignment="Center" 
+                                   Text="{Binding Name_Product}" Foreground="White"/>
+                                <TextBlock FontSize="20" Margin="0 20 0 30" HorizontalAlignment="Right" 
+                                   Text="{Binding Count_Product, StringFormat={}В наличии: {0} шт.}"  
+                                   Foreground="White"/>
+                                <TextBlock FontSize="20" Margin="0 30 0 40" HorizontalAlignment="Left" 
+                                   Text="{Binding Cost, StringFormat={}Цена: {0} руб.}"  
+                                   Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" Margin="1241,0,0,775"><Hyperlink TextDecorations="None" Foreground="White"><Run Text="Личный кабинет"/></Hyperlink></TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" Margin="1347,0,0,35"><Hyperlink TextDecorations="None" Foreground="White"><Run Text="Корзина"/></Hyperlink></TextBlock>
+        <Button Style="{StaticResource style_for_btn_buy}"  Content="Купить" x:Name="btn_enter" HorizontalAlignment="Left" Margin="1280,715,0,0" VerticalAlignment="Top" Height="74" Width="242" BorderBrush="White" FontSize="24" FontWeight="Medium" Background="{x:Null}" Foreground="White" RenderTransformOrigin="0.5,0.5" Cursor="Hand">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.109"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.331"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
 
     </Grid>
 </Page>

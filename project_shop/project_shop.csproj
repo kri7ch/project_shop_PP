@@ -61,6 +61,7 @@
     <Compile Include="Main_Shop_Window.xaml.cs">
       <DependentUpon>Main_Shop_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Products.cs" />
     <Compile Include="Product_card.xaml.cs">
       <DependentUpon>Product_card.xaml</DependentUpon>
     </Compile>
