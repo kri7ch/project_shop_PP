@@ -33,30 +33,50 @@
                 <Label Content="Отчество" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="32" FontWeight="Medium" Margin="60,20,0,0"/>
                 <Label x:Name="text_lastname" Content="Отчество" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF8285A9" FontSize="26" FontWeight="Medium" Margin="60,10,0,0"/>
                 <Button Style="{StaticResource style_for_btn_buy}" Content="Редактировать" 
-                    x:Name="btn_enter" HorizontalAlignment="Center" 
+                    x:Name="btn_redact" HorizontalAlignment="Center" 
                     Margin="800, 40, 0, 0" Height="55" Width="220" 
                     BorderBrush="White" FontSize="24" FontWeight="Medium" 
                      Background="#FF545875" Foreground="White" 
-                    Cursor="Hand">
+                    Cursor="Hand" Click="btn_redact_Click">
                 </Button>
                 <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="32" Margin="60,-120,0,0">
                     <Hyperlink Click="Hyperlink_Click_Aut" TextDecorations="None" Foreground="Red" FontWeight="Bold">
                         <Run Text="Выйти из аккаунта"/>
-                    </Hyperlink>    
+                    </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </Border>
-        
+
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" Margin="1270,0,0,775">
             <Hyperlink Click="Hyperlink_Click_MainMenu" TextDecorations="None" Foreground="White">
                 <Run Text="Главное меню"/>
             </Hyperlink>
         </TextBlock>
-        
+
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" Margin="1347,0,0,75">
             <Hyperlink TextDecorations="None" Click="Hyperlink_Click_Basket" Foreground="White">
                 <Run Text="Корзина"/>
             </Hyperlink>
         </TextBlock>
+
+        <TextBox Style="{StaticResource tb_style}" Visibility="Hidden" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown"
+            PreviewTextInput="textbox_Correct_input_PreviewTextInput" x:Name="textbox_surname" HorizontalAlignment="Left" Margin="145,400,0,0" Padding="2, 5, 0, 0"
+            TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="#FF35395B" FontSize="26" Height="51"
+            SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip Content="Ввод начинать вводить с большой буквы!"/>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <Button Style="{StaticResource style_for_btn_buy}" Content="Сохранить" Visibility="Hidden"
+            x:Name="btn_save" 
+            BorderBrush="White" FontSize="24" FontWeight="Medium" 
+            Background="#FF545875" Foreground="White" 
+            Cursor="Hand" Margin="945,744,385,101" Click="btn_save_Click"/>
+        <Button Style="{StaticResource style_for_btn_buy}" Content="Отменить редактирование" Visibility="Hidden" 
+            x:Name="btn_cancel_redact" 
+            BorderBrush="White" FontSize="24" FontWeight="Medium" 
+            Background="#FF545875" Foreground="White" 
+            Cursor="Hand" Click="btn_cancel_redact_Click" Margin="580,744,635,101"/>
     </Grid>
 </Page>

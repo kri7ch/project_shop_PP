@@ -186,10 +186,10 @@ namespace project_shop
         public void Guest_Page()
         {
             var window = Window.GetWindow(this);
-            window.Title = "Регистрация";
+            window.Title = "Главное меню";
             NavigationService.Navigate(new MainGuestPage());
         }
-
+         
         private void Hyperlink_Click_Guest(object sender, RoutedEventArgs e)
         {
             Guest_Page();

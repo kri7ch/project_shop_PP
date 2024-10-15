@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace project_shop
 {
@@ -23,6 +26,7 @@ namespace project_shop
     public partial class Profile_Page : Page
     {
         private int currentUserId;
+        string json = File.ReadAllText("users.json");
         public Profile_Page(int userId)
         {
             InitializeComponent();
@@ -31,7 +35,6 @@ namespace project_shop
         }
         private void ProvidingInformation()
         {
-            string json = File.ReadAllText("users.json");
             List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
 
             User currentUser = users.FirstOrDefault(user => user.Id == currentUserId);
@@ -90,5 +93,110 @@ namespace project_shop
             Exit_account();
         }
 
+        private void textbox_Correct_input_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+            TextBox textBox = sender as TextBox;
+            if (!Regex.IsMatch(e.Text, @"\p{IsCyrillic}"))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (textBox.Text.Length == 0)
+            {
+                e.Handled = true;
+                textBox.Text += e.Text.ToUpper();
+                textBox.CaretIndex = textBox.Text.Length;
+            }
+            else
+            {
+                e.Handled = true;
+                textBox.Text += e.Text.ToLower();
+                textBox.CaretIndex = textBox.Text.Length;
+            }
+        }
+        private void textBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Paste || e.Command == ApplicationCommands.Cut)
+            {
+                e.Handled = true;
+            }
+        }
+        private void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void EditingData()
+        {
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
+            User currentUser = users.FirstOrDefault(userInfo => userInfo.Id == currentUserId);
+            if (string.IsNullOrWhiteSpace(textbox_surname.Text))
+            {
+                MessageBox.Show("Заполните пустые поля!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (textbox_surname.Text.Length <= 4)
+            {
+                MessageBox.Show("Фамилия слишком короткая");
+                return;
+            }
+            else
+            {
+                currentUser.Surname = textbox_surname.Text;
+                text_surname.Content = currentUser.Surname;
+
+                string newJson = JsonConvert.SerializeObject(users);
+                File.WriteAllText("users.json", newJson);
+                UpdatingElementsAfterEditing();
+                MessageBox.Show("Данные были обновлены!", "Обновление данных", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+            EditingData();
+        }
+
+        private void ActivatingEditing()
+        {
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
+            User currentUser = users.FirstOrDefault(userInfo => userInfo.Id == currentUserId);
+            textbox_surname.Text = currentUser.Surname;
+            textbox_surname.Focus();
+            textbox_surname.Select(textbox_surname.Text.Length, 0);
+            UpdatingElementsEditing();
+        }
+        private void UpdatingElementsEditing()
+        {
+            text_surname.Visibility = Visibility.Hidden;
+            textbox_surname.Visibility = Visibility.Visible;
+            btn_save.Visibility = Visibility.Visible;
+            btn_cancel_redact.Visibility = Visibility.Visible;
+            btn_redact.Visibility = Visibility.Hidden;
+        }
+
+        private void UpdatingElementsAfterEditing()
+        {
+            text_surname.Visibility = Visibility.Visible;
+            textbox_surname.Visibility = Visibility.Hidden;
+            btn_save.Visibility = Visibility.Hidden;
+            btn_cancel_redact.Visibility = Visibility.Hidden;
+            btn_redact.Visibility = Visibility.Visible;
+        }
+
+        private void btn_redact_Click(object sender, RoutedEventArgs e)
+        {
+            ActivatingEditing();
+        }
+
+        private void btn_cancel_redact_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatingElementsAfterEditing();
+        }
     }
 }
