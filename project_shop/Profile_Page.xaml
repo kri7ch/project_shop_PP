@@ -68,6 +68,33 @@
             </TextBox.ToolTip>
         </TextBox>
 
+        <TextBox Style="{StaticResource tb_style}" Visibility="Hidden" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown"
+        PreviewTextInput="textbox_Correct_input_PreviewTextInput" x:Name="textbox_name" HorizontalAlignment="Left" Margin="145,529,0,0" Padding="2, 5, 0, 0"
+        TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="#FF35395B" FontSize="26" Height="51"
+        SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip Content="Ввод начинать вводить с большой буквы!"/>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <TextBox Style="{StaticResource tb_style}" Visibility="Hidden" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown"
+        PreviewTextInput="textbox_Correct_input_PreviewTextInput" x:Name="textbox_lastname" HorizontalAlignment="Left" Margin="145,660,0,0" Padding="2, 5, 0, 0"
+        TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}" Foreground="White" BorderBrush="#FF35395B" FontSize="26" Height="51"
+        SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip Content="Ввод начинать вводить с большой буквы!"/>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <TextBox Style="{StaticResource tb_style}" Visibility="Hidden" CommandManager.PreviewExecuted="textBox_PreviewExecuted" PreviewKeyDown="textBox_PreviewKeyDown" 
+        PreviewTextInput="textbox_email_PreviewTextInput" x:Name="textbox_email" MaxLength="50" HorizontalAlignment="Left" Margin="145,279,0,0"
+        Padding="2, 12, 0, 0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="406" Background="{x:Null}"
+        FontSize="15" Height="46" Foreground="White" BorderBrush="#FF35395B" SelectionBrush="#FF35395B">
+            <TextBox.ToolTip>
+                <ToolTip Content="Введите адрес электронной почты. Пример rakhmaevdanil@gmail.ru"/>
+            </TextBox.ToolTip>
+        </TextBox>
+
         <Button Style="{StaticResource style_for_btn_buy}" Content="Сохранить" Visibility="Hidden"
             x:Name="btn_save" 
             BorderBrush="White" FontSize="24" FontWeight="Medium" 
@@ -90,5 +117,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
     </Grid>
 </Page>

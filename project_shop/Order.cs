@@ -10,9 +10,9 @@ namespace project_shop
     {
         public int OrderId { get; set; }
         public int OrderAmount { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
 
-        public Order(int orderId, int orderAmount, DateTime orderDate)
+        public Order(int orderId, int orderAmount, string orderDate)
         {
             OrderId = orderId;
             OrderAmount = orderAmount;

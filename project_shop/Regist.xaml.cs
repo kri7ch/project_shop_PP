@@ -121,7 +121,8 @@ namespace project_shop
         private bool Checking_mail()
         {
             bool isEmpty = false;
-            if (!Regex.IsMatch(textbox_email.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$") || textbox_email.Text.Count(c => c == '@') != 1 || textbox_email.Text.Count(c => c == '.') != 1 || textbox_email.Text.Contains(".."))
+            if (!Regex.IsMatch(textbox_email.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$") || textbox_email.Text.Count(c => c == '@') != 1 || 
+                textbox_email.Text.Count(c => c == '.') != 1 || textbox_email.Text.Contains(".."))
             {
                 isEmpty = true;
             }

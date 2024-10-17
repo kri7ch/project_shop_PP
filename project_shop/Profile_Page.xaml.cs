@@ -124,6 +124,13 @@ namespace project_shop
                 e.Handled = true;
             }
         }
+        private void textbox_email_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"\p{IsCyrillic}"))
+            {
+                e.Handled = true;
+            }
+        }
         private void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
@@ -131,31 +138,65 @@ namespace project_shop
                 e.Handled = true;
             }
         }
+        private bool Checking_mail()
+        {
+            bool isEmpty = false;
+            if (!Regex.IsMatch(textbox_email.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$") || textbox_email.Text.Count(c => c == '@') != 1 ||
+                textbox_email.Text.Count(c => c == '.') != 1 || textbox_email.Text.Contains(".."))
+            {
+                isEmpty = true;
+            }
+            if (isEmpty)
+            {
+                MessageBox.Show("Пожалуйста, введите правильный адрес электронной почты.", "Предупреждение: Неверный адрес почты", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            return isEmpty;
+        }
+
+        private bool Checking_for_completion()
+        {
+            bool isEmpty = false;
+            List<TextBox> textBoxes = new List<TextBox>
+            {
+                textbox_email,
+                textbox_surname,
+                textbox_name
+            };
+            foreach (TextBox textBox in textBoxes)
+            {
+                if (textBox.Text == "")
+                {
+                    isEmpty = true;
+                }
+            }
+            if (isEmpty)
+            {
+                MessageBox.Show("Заполнены не все поля! Заполните поля и возвращайтесь вновь", "Предупреждение: Пустые поля", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            return isEmpty;
+        }
 
         private void EditingData()
         {
             List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
             User currentUser = users.FirstOrDefault(userInfo => userInfo.Id == currentUserId);
-            if (string.IsNullOrWhiteSpace(textbox_surname.Text))
-            {
-                MessageBox.Show("Заполните пустые поля!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            if (textbox_surname.Text.Length <= 4)
-            {
-                MessageBox.Show("Фамилия слишком короткая");
-                return;
-            }
-            else
-            {
-                currentUser.Surname = textbox_surname.Text;
-                text_surname.Content = currentUser.Surname;
 
-                string newJson = JsonConvert.SerializeObject(users);
-                File.WriteAllText("users.json", newJson);
-                UpdatingElementsAfterEditing();
-                MessageBox.Show("Данные были обновлены!", "Обновление данных", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (Checking_for_completion() || Checking_mail())
+            {
+                return;
             }
+
+            currentUser.Surname = textbox_surname.Text;
+            currentUser.Name = textbox_name.Text;
+            currentUser.Middle_Name = textbox_lastname.Text;
+            text_surname.Content = currentUser.Surname;
+
+            string newJson = JsonConvert.SerializeObject(users);
+            File.WriteAllText("users.json", newJson);
+            UpdatingElementsAfterEditing();
+            MessageBox.Show("Данные были обновлены!", "Обновление данных", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -167,15 +208,25 @@ namespace project_shop
         {
             List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
             User currentUser = users.FirstOrDefault(userInfo => userInfo.Id == currentUserId);
+
+            textbox_email.Text = currentUser.Email; 
             textbox_surname.Text = currentUser.Surname;
-            textbox_surname.Focus();
-            textbox_surname.Select(textbox_surname.Text.Length, 0);
+            textbox_name.Text = currentUser.Name;
+            textbox_lastname.Text = currentUser.Middle_Name;
             UpdatingElementsEditing();
         }
         private void UpdatingElementsEditing()
         {
+            text_email.Visibility = Visibility.Hidden;
             text_surname.Visibility = Visibility.Hidden;
+            text_name.Visibility = Visibility.Hidden;
+            text_lastname.Visibility = Visibility.Hidden;
+
+            textbox_email.Visibility = Visibility.Visible;
+            textbox_name.Visibility = Visibility.Visible;
+            textbox_lastname.Visibility = Visibility.Visible;
             textbox_surname.Visibility = Visibility.Visible;
+
             btn_save.Visibility = Visibility.Visible;
             btn_cancel_redact.Visibility = Visibility.Visible;
             btn_redact.Visibility = Visibility.Hidden;
@@ -183,8 +234,16 @@ namespace project_shop
 
         private void UpdatingElementsAfterEditing()
         {
+            text_email.Visibility = Visibility.Visible;
             text_surname.Visibility = Visibility.Visible;
+            text_name.Visibility = Visibility.Visible;
+            text_lastname.Visibility = Visibility.Visible;
+
+            textbox_email.Visibility = Visibility.Hidden;
+            textbox_name.Visibility = Visibility.Hidden;
+            textbox_lastname.Visibility = Visibility.Hidden;
             textbox_surname.Visibility = Visibility.Hidden;
+
             btn_save.Visibility = Visibility.Hidden;
             btn_cancel_redact.Visibility = Visibility.Hidden;
             btn_redact.Visibility = Visibility.Visible;

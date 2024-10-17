@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace project_shop
 {
@@ -131,13 +132,14 @@ namespace project_shop
             {
                 List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
                 User currentUser = users.FirstOrDefault(user => user.Id == currentUserId);
-                var newOrder = new Order(generateOrderId(), totalPriceValue, DateTime.Now);
+                var newOrder = new Order(generateOrderId(), totalPriceValue, DateTime.Now.ToString("dd.MM.yyyy"));
                 currentUser.Orders.Add(newOrder);
                 SaveUsers(users);
                 ClearBasket();
                 MainMenu_Page();
             }
         }
+
         private void SaveUsers(List<User> users)
         {
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
