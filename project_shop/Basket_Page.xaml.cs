@@ -24,6 +24,7 @@ namespace project_shop
     {
         int totalprice = 0;
         private int currentUserId;
+        string json = File.ReadAllText("users.json");
         public Basket_Page(int userId)
         {
             InitializeComponent();
@@ -97,6 +98,18 @@ namespace project_shop
             MainMenu_Page();
         }
 
+
+        private List<User> users = new List<User>();
+        
+
+        private int generateOrderId()
+        {
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText("users.json"));
+            User currentUser = users.FirstOrDefault(user => user.Id == currentUserId);
+
+            int maxOrderId = currentUser.Orders.Count > 0 ? currentUser.Orders.Max(u => u.OrderId) : 0;
+            return maxOrderId + 1; 
+        }
         private void Checkout()
         {
             int totalPriceValue = 0;
@@ -116,9 +129,19 @@ namespace project_shop
             var result = MessageBox.Show($"Оформить заказ - {totalPriceValue} руб. ?", "Оформление заказа", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
+                List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
+                User currentUser = users.FirstOrDefault(user => user.Id == currentUserId);
+                var newOrder = new Order(generateOrderId(), totalPriceValue, DateTime.Now);
+                currentUser.Orders.Add(newOrder);
+                SaveUsers(users);
                 ClearBasket();
                 MainMenu_Page();
             }
+        }
+        private void SaveUsers(List<User> users)
+        {
+            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+            File.WriteAllText("users.json", json);
         }
         private void ClearBasket()
         {

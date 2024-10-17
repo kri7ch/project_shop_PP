@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace project_shop
 {
@@ -14,6 +15,7 @@ namespace project_shop
         public string Middle_Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public List<Order> Orders { get; set; } = new List<Order>();
 
         public User(string surname, string name, string middleName, string email, string password)
         {

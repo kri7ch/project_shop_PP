@@ -43,6 +43,7 @@ namespace project_shop
             text_surname.Content = currentUser.Surname;
             text_name.Content = currentUser.Name;
             text_lastname.Content = currentUser.Middle_Name;
+            ordersListView.ItemsSource = currentUser.Orders;
         }
 
         public void MainMenu_Page()
