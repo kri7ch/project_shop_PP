@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace project_shop
 {
@@ -114,11 +115,21 @@ namespace project_shop
         private void Checkout()
         {
             int totalPriceValue = 0;
+            int totalQuantity = 0;
             foreach (var item in basketList.Items)
             {
                 string[] parts = item.ToString().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length > 2)
                 {
+                    string quantityText = parts[1];
+                    string quantityNumberString = quantityText.Split(' ')[1];
+                    MessageBox.Show(quantityNumberString);
+
+                    if (int.TryParse(quantityNumberString, out int quantity))
+                    {
+                        totalQuantity += quantity;
+                    }
+
                     string priceText = parts[2];
                     string priceNumberString = priceText.Split(' ')[1];
                     if (int.TryParse(priceNumberString, out int price))
@@ -127,12 +138,13 @@ namespace project_shop
                     }
                 }
             }
+            List<Products> savedProducts = JsonConvert.DeserializeObject<List<Products>>(json);
             var result = MessageBox.Show($"Оформить заказ - {totalPriceValue} руб. ?", "Оформление заказа", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
                 User currentUser = users.FirstOrDefault(user => user.Id == currentUserId);
-                var newOrder = new Order(generateOrderId(), totalPriceValue, DateTime.Now.ToString("dd.MM.yyyy"));
+                var newOrder = new Order(generateOrderId(), totalPriceValue, DateTime.Now.ToString("dd.MM.yyyy"), totalQuantity);
                 currentUser.Orders.Add(newOrder);
                 SaveUsers(users);
                 ClearBasket();

@@ -106,17 +106,17 @@
             Background="#FF545875" Foreground="White" 
             Cursor="Hand" Click="btn_cancel_redact_Click" Margin="580,744,635,101"/>
 
-        <ListView Name="ordersListView" Margin="725,234,360,176" FontSize="16" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}"
+        <ListView Name="ordersListView" Margin="530,234,385,176" FontSize="16" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                   ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID заказа" DisplayMemberBinding="{Binding OrderId}" Width="120"/>
+                    <GridViewColumn Header="Количество товаров" DisplayMemberBinding="{Binding TotalQuantity}" Width="160"/>
                     <GridViewColumn Header="Цена заказа Руб." DisplayMemberBinding="{Binding OrderAmount}" Width="150"/>
                     <GridViewColumn Header="Дата заказа" DisplayMemberBinding="{Binding OrderDate}" Width="200"/>
                 </GridView>
             </ListView.View>
         </ListView>
-
     </Grid>
 </Page>

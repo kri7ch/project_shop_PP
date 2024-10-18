@@ -141,6 +141,7 @@ namespace project_shop
         private bool Checking_mail()
         {
             bool isEmpty = false;
+            
             if (!Regex.IsMatch(textbox_email.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$") || textbox_email.Text.Count(c => c == '@') != 1 ||
                 textbox_email.Text.Count(c => c == '.') != 1 || textbox_email.Text.Contains(".."))
             {
@@ -181,6 +182,7 @@ namespace project_shop
         {
             List<User> users = JsonConvert.DeserializeObject<List<User>>(json);
             User currentUser = users.FirstOrDefault(userInfo => userInfo.Id == currentUserId);
+            
 
             if (Checking_for_completion() || Checking_mail())
             {
